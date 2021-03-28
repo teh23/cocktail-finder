@@ -1,5 +1,17 @@
-function App() {
-	return <div className="App">Hey</div>;
-}
+import "bulma/css/bulma.css";
+import React from "react";
+import Top from "./components/Top";
+import Content from "./components/Content";
 
+
+
+function App() {
+
+	return (
+		<div>
+			<Top/>
+			<Content/>
+		</div>
+	)
+}
 export default App;
