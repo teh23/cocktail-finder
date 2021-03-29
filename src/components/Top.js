@@ -26,9 +26,9 @@ const Top = () =>{
                                 <span className="navbar-item">
                                   <a className="button">
                                     <span className="icon">
-                                      <i className="fas fa-home"></i>
+                                      <i className="fab fa-github"></i>
                                     </span>
-                                    <span>Github</span>
+                                    <span>Project</span>
                                   </a>
                                 </span>
                             </div>
