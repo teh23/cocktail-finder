@@ -38,16 +38,27 @@ const Top = () =>{
             </div>
             <div className={"hero-body"}>
                 <div className={"container has-text-centered"}>
-                    <p className={"title has-text-light"}>
+                    <p className={"title is-1 has-text-light"}>
                         Cocktail finder
                     </p>
+                    <p className="subtitle is-5 has-text-grey-lighter">
+                        search your favorite drink recipe
+                    </p>
 
-                    <div className="container is-desktop">
-                            <input className={"input is-desktop"}/>
+
+                </div>
+                <div className="container has-text-centered mt-5 is-medium">
+                    <div className="columns is-centered">
+                        <div className="column is-8">
+                            <input className={"input"}/>
                         </div>
+
+                    </div>
 
                     <button className={"mt-5 pl-5 pr-5 button is-primary "}>Search</button>
                 </div>
+
+
 
             </div>
         </section>
