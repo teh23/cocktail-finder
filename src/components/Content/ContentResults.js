@@ -1,6 +1,4 @@
-import React from 'react'
-
-const ContentMain = ({ title }) => {
+const ContentResults = ({ title }) => {
     return (
         <div>
             <p className={'title'}>{title}</p>
@@ -8,4 +6,4 @@ const ContentMain = ({ title }) => {
     )
 }
 
-export default ContentMain
+export default ContentResults
