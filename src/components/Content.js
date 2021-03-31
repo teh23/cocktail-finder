@@ -1,5 +1,7 @@
 import 'bulma/css/bulma.css'
 import React from 'react'
+import ContentFilters from './Content/ContentFilters'
+import ContentMain from './Content/ContentMain'
 
 const Content = () => {
     return (
@@ -7,12 +9,12 @@ const Content = () => {
             <div className={'columns is-mobile is-9'}>
                 <div className={'column is-3'}>
                     <div className={'tile box'}>
-                        <p className={'title'}>test size</p>
+                        <ContentFilters title={'Filters:'} />
                     </div>
                 </div>
                 <div className={'column is-9'}>
                     <div className={'tile box'}>
-                        <p className={'title'}>test second size</p>
+                        <ContentMain title={'Cocktails:'} />
                     </div>
                 </div>
             </div>
