@@ -1,33 +1,20 @@
-import "bulma/css/bulma.css";
-import React, {useEffect} from "react";
-import axios from "axios";
-import Results from "./Content/Results";
-import Filters from "./Content/Filters";
+import 'bulma/css/bulma.css'
+import React from 'react'
+import ContentFilters from './Content/ContentFilters'
+import ContentMain from './Content/ContentMain'
 
-const Content = () =>{
-
-   /* useEffect( () =>{
-        axios.get("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a")
-            .then(res =>{
-                console.log(res.data)
-            })
-    }, [])*/
-
-    return(
-        <div className={"container mt-5"}>
-            <div className={"columns is-mobile is-9" }>
-                <div className={"column is-3"}>
-                    <div className={"tile box"}>
-                        <p className={"title"}>
-                            <Filters />
-                        </p>
+const Content = () => {
+    return (
+        <div className={'container mt-5'}>
+            <div className={'columns is-mobile is-9'}>
+                <div className={'column is-3'}>
+                    <div className={'tile box'}>
+                        <ContentFilters title={'Filters:'} />
                     </div>
                 </div>
-                <div className={"column is-9"}>
-                    <div className={"tile box"}>
-                        <p className={"title"}>
-                            <Results />
-                        </p>
+                <div className={'column is-9'}>
+                    <div className={'tile box'}>
+                        <ContentMain title={'Cocktails:'} />
                     </div>
                 </div>
             </div>

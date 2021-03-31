@@ -1,4 +1,10 @@
-import { createStore } from 'redux';
-import reducers from './reducers';
+import filtersReducer from './reducers/filtersReducer'
+import { applyMiddleware, combineReducers, createStore } from 'redux'
+import thunk from 'redux-thunk'
+const reducers = combineReducers({
+    filters: filtersReducer,
+})
 
-export const store = createStore(reducers);
+const store = createStore(reducers, applyMiddleware(thunk))
+
+export default store
