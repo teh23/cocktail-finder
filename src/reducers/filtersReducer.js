@@ -1,8 +1,17 @@
 import CocktailFetch from '../service/filtersFetch'
-const filtersReducer = (state = [], action) => {
+
+const initialState = {
+    categories: '',
+    glasses: '',
+    ingredients: '',
+    alcoholic: '',
+    loading: true,
+}
+
+const filtersReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'FETCH_CATEGORIES':
-            return [...state, action.data]
+            return action.data
         default:
             return state
     }
@@ -17,10 +26,23 @@ export const fetchFilters = () => {
         dispatch({
             type: 'FETCH_CATEGORIES',
             data: {
-                categories: categories.map((row) => row.strCategory),
-                glasses: glasses.map((row) => row.strGlass),
-                ingredients: ingredients.map((row) => row.strIngredient1),
-                alcoholic: alcoholic.map((row) => row.strAlcoholic),
+                categories: categories.map((row) => ({
+                    name: row.strCategory,
+                    state: false,
+                })),
+                glasses: glasses.map((row) => ({
+                    name: row.strGlass,
+                    state: false,
+                })),
+                ingredients: ingredients.map((row) => ({
+                    name: row.strIngredient1,
+                    state: false,
+                })),
+                alcoholic: alcoholic.map((row) => ({
+                    name: row.strAlcoholic,
+                    state: false,
+                })),
+                loading: false,
             },
         })
     }

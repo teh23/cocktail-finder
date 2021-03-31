@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import Top from './components/Top'
 import Content from './components/Content'
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { fetchFilters } from './reducers/filtersReducer'
 
 function App() {
