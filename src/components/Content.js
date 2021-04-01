@@ -9,15 +9,15 @@ const Content = () => {
         <div className={'container mt-5'}>
             <div className={'columns is-9'}>
                 <div className={'column is-3'}>
-                    <div className="box">
+                    <div className="content-box">
                         <ContentCategories title={'Categories:'} />
+                    </div>
+                    <div className={'content-box'}>
+                        <ContentGlasses title={'Glasses:'} />
                     </div>
                 </div>
                 <div className={'column is-9'}>
-                    <div className={'box'}>
-                        <ContentGlasses title={'Glasses:'} />
-                    </div>
-                    <div className={'box'}>
+                    <div className="content-box">
                         <ContentResults title={'Results:'} />
                     </div>
                 </div>

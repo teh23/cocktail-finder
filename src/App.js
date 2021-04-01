@@ -13,7 +13,7 @@ function App() {
         dispatch(fetchFilters())
     }, [dispatch])
     return (
-        <div>
+        <div className="has-background-white-ter">
             <Top />
             <Content />
         </div>

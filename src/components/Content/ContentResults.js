@@ -5,6 +5,7 @@ import Loading from '../Loading'
 import React from 'react'
 
 import { toast } from 'bulma-toast'
+import Media from '../Media'
 
 const ContentResults = ({ title }) => {
     const dispatch = useDispatch()
@@ -21,7 +22,11 @@ const ContentResults = ({ title }) => {
                 animate: { in: 'fadeIn', out: 'fadeOut' },
             })
         }
-        return <div></div>
+        return (
+            <div>
+                <p className={'title'}>{title}</p>
+            </div>
+        )
     }
     if (drinks.searchByName.loading) {
         return <Loading />
@@ -29,28 +34,10 @@ const ContentResults = ({ title }) => {
 
     return (
         <div>
-            {console.log(drinks.searchByName.data)}
             <p className={'title'}>{title}</p>
 
             {drinks.searchByName.data.map((row) => {
-                return (
-                    <div className="box">
-                        <div className="card-content columns">
-                            <div className="column is-3">
-                                <figure className="image is-128x128">
-                                    <img
-                                        src={row.strDrinkThumb}
-                                        className="is-small"
-                                    />
-                                </figure>
-                            </div>
-                            <div className={'column'}>
-                                <p className={'title'}>{row.strDrink}</p>
-                                <p>{row.strInstructions}</p>
-                            </div>
-                        </div>
-                    </div>
-                )
+                return <Media row={row} />
             })}
         </div>
     )
