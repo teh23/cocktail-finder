@@ -29,11 +29,28 @@ const ContentResults = ({ title }) => {
 
     return (
         <div>
-            {console.log(drinks)}
+            {console.log(drinks.searchByName.data)}
             <p className={'title'}>{title}</p>
 
             {drinks.searchByName.data.map((row) => {
-                return <div>{row.strDrink}</div>
+                return (
+                    <div className="box">
+                        <div className="card-content columns">
+                            <div className="column is-3">
+                                <figure className="image is-128x128">
+                                    <img
+                                        src={row.strDrinkThumb}
+                                        className="is-small"
+                                    />
+                                </figure>
+                            </div>
+                            <div className={'column'}>
+                                <p className={'title'}>{row.strDrink}</p>
+                                <p>{row.strInstructions}</p>
+                            </div>
+                        </div>
+                    </div>
+                )
             })}
         </div>
     )

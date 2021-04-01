@@ -11,7 +11,12 @@ high:<br>
 [] connect filters<br> 
 med:<br>
 [] tests <br>
+[] filters better view <br>
+[] add type of cocktail <br>
 low:<br>
+[] group glasses in view <br>
+[] orgianize top file<br>
 [] error handling<br>
 [] more custom layout<br>
+
 

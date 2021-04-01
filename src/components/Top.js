@@ -9,6 +9,7 @@ const Top = () => {
 
     const onChange = (e) => {
         setSearch(e.target.value)
+        dispatch(searchName(e.target.value))
     }
 
     const doSearch = (e) => {
