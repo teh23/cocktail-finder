@@ -1,7 +1,21 @@
 import 'bulma/css/bulma.css'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { searchName } from '../reducers/filtersReducer'
 
 const Top = () => {
+    const [search, setSearch] = React.useState('')
+    const dispatch = useDispatch()
+
+    const onChange = (e) => {
+        setSearch(e.target.value)
+    }
+
+    const doSearch = (e) => {
+        e.preventDefault()
+        if (e.type === 'click' || e.which === '13') dispatch(searchName(search))
+    }
+
     return (
         <section
             className={'hero is-primary has-background-primary-dark is-medium'}
@@ -58,11 +72,20 @@ const Top = () => {
                 <div className="container has-text-centered mt-5 is-medium">
                     <div className="columns is-centered">
                         <div className="column is-8">
-                            <input className={'input'} />
+                            <input
+                                className={'input'}
+                                placeholder={'search by name...'}
+                                value={search}
+                                onChange={onChange}
+                            />
                         </div>
                     </div>
 
-                    <button className={'mt-5 pl-5 pr-5 button is-primary '}>
+                    <button
+                        className={'mt-5 pl-5 pr-5 button is-primary '}
+                        onClick={doSearch}
+                        onKeyDown={doSearch}
+                    >
                         Search
                     </button>
                 </div>

@@ -13,7 +13,7 @@ const Content = () => {
                         <ContentCategories title={'Categories:'} />
                     </div>
                 </div>
-                <div className={'column  is-9'}>
+                <div className={'column is-9'}>
                     <div className={'box'}>
                         <ContentGlasses title={'Glasses:'} />
                     </div>
