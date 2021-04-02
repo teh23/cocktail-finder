@@ -1,19 +1,46 @@
 import CocktailFetch from '../service/filtersFetch'
+import SearchFetch from '../service/searchFetch'
 
 const initialState = {
     categories: '',
     glasses: '',
     ingredients: '',
     alcoholic: '',
+    searchByName: {
+        data: '',
+        loading: true,
+    },
     loading: true,
 }
 
 const filtersReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'FETCH_CATEGORIES':
-            return action.data
+            return {
+                ...state,
+                categories: action.data.categories,
+                alcoholic: action.data.alcoholic,
+                glasses: action.data.glasses,
+                ingredients: action.data.ingredients,
+                loading: action.data.loading,
+            }
+        case 'FETCH_SEARCH':
+            return { ...state, searchByName: action.data }
         default:
             return state
+    }
+}
+
+export const searchName = (name) => {
+    return async (dispatch) => {
+        const result = await SearchFetch.searchByName(name)
+        dispatch({
+            type: 'FETCH_SEARCH',
+            data: {
+                data: result,
+                loading: false,
+            },
+        })
     }
 }
 

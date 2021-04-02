@@ -28,4 +28,6 @@ const getAlcoholic = async () => {
     return response.data.drinks
 }
 
-export default { getCategories, getGlasses, getIngredients, getAlcoholic }
+const filtersFetch = { getCategories, getGlasses, getIngredients, getAlcoholic }
+
+export default filtersFetch
