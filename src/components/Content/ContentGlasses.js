@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Loading from '../Loading'
+import { toggleState } from '../../reducers/filtersReducer'
 
 const ContentGlasses = ({ title }) => {
+    const dispatch = useDispatch()
     const filters = useSelector((state) => state.filters)
     const [search, setSearch] = useState('')
 
@@ -11,6 +13,9 @@ const ContentGlasses = ({ title }) => {
     }
     const onSearch = (e) => {
         setSearch(e.target.value)
+    }
+    const toggleActive = (name) => {
+        dispatch(toggleState({ type: 'glasses', name: name }))
     }
     return (
         <div>
@@ -30,8 +35,11 @@ const ContentGlasses = ({ title }) => {
                 .map((row) => {
                     return (
                         <button
-                            className=" is-small button mr-2 mt-3 "
+                            className={`is-primary is-small button mr-2 mt-3 ${
+                                row.state ? 'is-active' : ''
+                            }`}
                             key={row.name}
+                            onClick={() => toggleActive(row.name)}
                         >
                             {row.name}
                         </button>

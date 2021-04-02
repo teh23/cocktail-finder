@@ -26,8 +26,30 @@ const filtersReducer = (state = initialState, action) => {
             }
         case 'FETCH_SEARCH':
             return { ...state, searchByName: action.data }
+        case 'TOGGLE_STATE':
+            const content = state[`${action.data.type}`].map((row) =>
+                row.name === action.data.name
+                    ? row.state === true
+                        ? { name: row.name, state: false }
+                        : { name: row.name, state: true }
+                    : { name: row.name, state: false }
+            )
+            console.log(content)
+            return {
+                ...state,
+                [action.data.type]: content,
+            }
         default:
             return state
+    }
+}
+export const toggleState = (data) => {
+    /*
+        data = {type: '', name: ''}
+     */
+    return {
+        type: 'TOGGLE_STATE',
+        data: data,
     }
 }
 
