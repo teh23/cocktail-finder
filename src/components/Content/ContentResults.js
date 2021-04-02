@@ -1,15 +1,40 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Loading from '../Loading'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { toast } from 'bulma-toast'
 import Media from '../Media'
 
 const ContentResults = ({ title }) => {
-    const drinks = useSelector((state) => state.filters)
+    const drinks = useSelector(({ filters }) => {
+        if (filters.searchByName.data.length > 0) {
+            if (filters.filters.categories !== '') {
+                return {
+                    data: filters.searchByName.data.filter(
+                        (row) => row.strCategory === filters.filters.categories
+                    ),
+                    loading: false,
+                }
+            }
+        }
+        return filters.searchByName
+    })
 
-    if (drinks.searchByName.data === '' || drinks.searchByName.data === null) {
-        if (drinks.searchByName.data === null) {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        console.log(drinks)
+        /*if (drinks.searchByName.data.length > 0) {
+            if (drinks.filters.categories !== '') {
+                drinks.searchByName.data.filter(
+                    (row) => row.strCategory === drinks.filters.categories
+                )
+            }
+        }*/
+    }, [drinks])
+
+    if (drinks.data === '' || drinks.data === null) {
+        if (drinks.data === null) {
             toast({
                 message: '<h1>No one know this drink...</h1>',
                 type: 'is-danger',
@@ -25,7 +50,7 @@ const ContentResults = ({ title }) => {
             </div>
         )
     }
-    if (drinks.searchByName.loading) {
+    if (drinks.loading) {
         return <Loading />
     }
 
@@ -33,7 +58,7 @@ const ContentResults = ({ title }) => {
         <div>
             <p className={'title'}>{title}</p>
 
-            {drinks.searchByName.data.map((row) => {
+            {drinks.data.map((row) => {
                 return <Media row={row} />
             })}
         </div>
