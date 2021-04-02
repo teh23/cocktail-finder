@@ -23,13 +23,12 @@ const Top = () => {
     }
 
     return (
-        <section
-            className={'hero is-primary has-background-primary-dark is-medium'}
-        >
+        <section className="hero is-primary has-background-primary-dark is-medium">
             <div className={'hero-head'}>
                 <nav className={'navbar'}>
                     <div className={'container'}>
                         <div className={'navbar-brand'}>
+                            {/*eslint-disable-next-line*/}
                             <a
                                 href="#"
                                 className={
@@ -38,8 +37,8 @@ const Top = () => {
                             >
                                 COCKTAIL FINDER
                             </a>
-                            <a
-                                className={`navbar-burger ${
+                            <p
+                                className={`has-text-white navbar-burger ${
                                     active ? 'is-active' : ''
                                 }`}
                                 role="button"
@@ -49,7 +48,7 @@ const Top = () => {
                                 <span></span>
                                 <span></span>
                                 <span></span>
-                            </a>
+                            </p>
                         </div>
 
                         <div
@@ -59,11 +58,15 @@ const Top = () => {
                             }`}
                         >
                             <div className="navbar-end">
+                                {/*eslint-disable-next-line*/}
                                 <a href="#" className="navbar-item is-active">
                                     Home
                                 </a>
                                 <span className="navbar-item">
-                                    <a className="button">
+                                    <a
+                                        href="https://github.com/teh23/cocktail-finder"
+                                        className="button"
+                                    >
                                         <span className="icon">
                                             <i className="fab fa-github"></i>
                                         </span>

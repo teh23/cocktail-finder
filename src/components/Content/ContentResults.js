@@ -1,6 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux'
-import searchFetch from '../../service/searchFetch'
-import { searchName } from '../../reducers/filtersReducer'
+import { useSelector } from 'react-redux'
 import Loading from '../Loading'
 import React from 'react'
 
@@ -8,7 +6,6 @@ import { toast } from 'bulma-toast'
 import Media from '../Media'
 
 const ContentResults = ({ title }) => {
-    const dispatch = useDispatch()
     const drinks = useSelector((state) => state.filters)
 
     if (drinks.searchByName.data === '' || drinks.searchByName.data === null) {

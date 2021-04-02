@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 import './Media.sass'
 
 const Media = ({ row }) => {
@@ -8,7 +8,11 @@ const Media = ({ row }) => {
             <div className=" columns ">
                 <div className="column is-1">
                     <figure className="image is-64x64">
-                        <img src={row.strDrinkThumb} className="" />
+                        <img
+                            src={row.strDrinkThumb}
+                            className=""
+                            alt={`${row.strDrink} drink`}
+                        />
                     </figure>
                 </div>
                 <div className={'column'}>

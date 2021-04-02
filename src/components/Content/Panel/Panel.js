@@ -1,13 +1,14 @@
+/*
 import React from 'react'
 
 const Panel = ({ title = '' }) => {
-    /*
+    /!*
         Documentation:
 
 
 
 
-    */
+    *!/
     return (
         <nav className="panel">
             <p className="title pl-5  pb-2 pt-5 mb-2">{title}</p>
@@ -86,3 +87,4 @@ const Panel = ({ title = '' }) => {
 }
 
 export default Panel
+*/

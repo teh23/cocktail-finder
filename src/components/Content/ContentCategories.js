@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import Loading from '../Loading'
-import bulmaCollapsible from '@creativebulma/bulma-collapsible'
-import Panel from './Panel/Panel'
 
 const ContentCategories = ({ title }) => {
     const filters = useSelector((state) => state.filters)
@@ -29,8 +27,6 @@ const ContentCategories = ({ title }) => {
             {/*<Panel title={title} />*/}
         </div>
     )
-}
-{
 }
 
 export default ContentCategories

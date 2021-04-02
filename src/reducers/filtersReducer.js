@@ -1,6 +1,6 @@
 import CocktailFetch from '../service/filtersFetch'
 import SearchFetch from '../service/searchFetch'
-import { act } from '@testing-library/react'
+
 const initialState = {
     categories: '',
     glasses: '',

@@ -6,4 +6,7 @@ const searchByName = async (name) => {
     )
     return response.data.drinks
 }
-export default { searchByName }
+
+const searchFetch = { searchByName }
+
+export default searchFetch
