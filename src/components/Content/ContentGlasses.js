@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Loading from '../Loading'
-import { toggleState } from '../../reducers/filtersReducer'
+import { fetchResults, toggleState } from '../../reducers/filtersReducer'
 
 const ContentGlasses = ({ title }) => {
     const dispatch = useDispatch()
@@ -16,6 +16,7 @@ const ContentGlasses = ({ title }) => {
     }
     const toggleActive = (name) => {
         dispatch(toggleState({ type: 'glasses', name: name }))
+        dispatch(fetchResults('glasses', name))
     }
     return (
         <div>

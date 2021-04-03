@@ -1,5 +1,7 @@
 import CocktailFetch from '../service/filtersFetch'
 import SearchFetch from '../service/searchFetch'
+import searchFetch from '../service/searchFetch'
+import filtersFetch from '../service/filtersFetch'
 
 const initialState = {
     categories: '',
@@ -68,16 +70,37 @@ const filtersReducer = (state = initialState, action) => {
     }
 }
 
-export const fetchResults = (data) => {
-    return {
-        type: 'FETCH_RESULTS',
-        data: data,
+export const fetchResults = (type = '', name = '') => {
+    switch (type) {
+        case 'categories':
+            console.log('categories')
+            return async (dispatch) => {
+                const result = await filtersFetch.getCategoriesByName(name)
+                dispatch({
+                    type: 'FETCH_RESULTS',
+                    data: result,
+                })
+            }
+        case 'glasses':
+            return async (dispatch) => {
+                const result = await filtersFetch.getGlassesByName(name)
+                dispatch({
+                    type: 'FETCH_RESULTS',
+                    data: result,
+                })
+            }
+        default:
+            return {
+                type: 'FETCH_RESULTS',
+                data: '',
+            }
     }
 }
 export const toggleState = (data) => {
     /*
         data = {type: '', name: ''}
      */
+
     return {
         type: 'TOGGLE_STATE',
         data: data,
