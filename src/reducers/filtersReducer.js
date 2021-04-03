@@ -42,12 +42,12 @@ const filtersReducer = (state = initialState, action) => {
                         : { name: row.name, state: true }
                     : { name: row.name, state: false }
             )
-            const filters = {
+            /*const filters = {
                 [action.data.type]:
                     state.filters[action.data.type] !== action.data.name
                         ? action.data.name
                         : '',
-            }
+            }*/
             return {
                 ...state,
                 [action.data.type]: content,
