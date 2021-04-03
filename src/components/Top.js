@@ -17,11 +17,7 @@ const Top = () => {
 
     const onChange = (e) => {
         setSearch(e.target.value)
-        if (e.target.value === '') {
-            console.log(filters)
-        } else {
-            dispatch(searchName(e.target.value))
-        }
+        dispatch(searchName(e.target.value))
     }
 
     const doSearch = (e) => {

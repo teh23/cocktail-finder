@@ -1,8 +1,15 @@
 import axios from 'axios'
-
+import React from 'react'
 const getCategories = async () => {
     const response = await axios.get(
         `https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`
+    )
+    return response.data.drinks
+}
+
+const getById = async (id) => {
+    const response = await axios.get(
+        `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
     )
     return response.data.drinks
 }
@@ -32,13 +39,27 @@ const getCategoriesByName = async (name) => {
     const response = await axios.get(
         `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${name}`
     )
-    return response.data.drinks
+    const res = response.data.drinks.map(async (row) => {
+        return await getById(row.idDrink)
+    })
+    const drinks = []
+
+    await Promise.all(res).then((a) => a.map((b) => drinks.push(b[0])))
+
+    return drinks
 }
 const getGlassesByName = async (name) => {
     const response = await axios.get(
         `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=${name}`
     )
-    return response.data.drinks
+    const res = response.data.drinks.map(async (row) => {
+        return await getById(row.idDrink)
+    })
+    const drinks = []
+
+    await Promise.all(res).then((a) => a.map((b) => drinks.push(b[0])))
+
+    return drinks
 }
 const getAlcoholicByName = async (name) => {
     const response = await axios.get(
@@ -55,6 +76,7 @@ const filtersFetch = {
     getCategoriesByName,
     getGlassesByName,
     getAlcoholicByName,
+    getById,
 }
 
 export default filtersFetch

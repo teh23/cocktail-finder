@@ -1,10 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Loading from '../Loading'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { toast } from 'bulma-toast'
 import Media from '../Media'
-import { fetchResults } from '../../reducers/filtersReducer'
 
 /*toast({
     message: '<h1>No one know this drink...</h1>',
@@ -17,8 +16,37 @@ import { fetchResults } from '../../reducers/filtersReducer'
 
 const useContentResults = () => {
     const drinks = useSelector(({ filters }) => {
-        console.log(filters)
-        return filters
+        if (
+            filters.filters.categories.length > 0 ||
+            filters.filters.glasses.length > 0 ||
+            filters.filters.alcoholic.length > 0
+        ) {
+            if (filters.searchByName.string.length > 0) {
+                return {
+                    loading: false,
+                    data: filters.results.filter((row) => {
+                        return row.strDrink
+                            .toLowerCase()
+                            .includes(filters.searchByName.string.toLowerCase())
+                    }),
+                }
+            }
+            return {
+                loading: false,
+                data: filters.results,
+            }
+        }
+        if (filters.searchByName.string.length > 0) {
+            return {
+                loading: false,
+                data: filters.searchByName.data,
+            }
+        }
+
+        return {
+            loading: true,
+            data: filters.results,
+        }
     })
 
     return drinks
@@ -26,11 +54,11 @@ const useContentResults = () => {
 
 const ContentResults = ({ title }) => {
     const drinks = useContentResults()
-
-    if (drinks.searchByName.loading) {
+    console.log(drinks)
+    if (drinks.loading) {
         return <Loading />
     }
-    if (drinks.searchByName.data === '' || drinks.searchByName.data === null) {
+    if (drinks.data === '' || drinks.data === null) {
         if (drinks.data === null) {
             toast({
                 message: '<h1>No one know this drink...</h1>',
@@ -52,7 +80,7 @@ const ContentResults = ({ title }) => {
         <div>
             <p className={'title'}>{title}</p>
 
-            {drinks.searchByName.data.map((row) => {
+            {drinks.data.map((row) => {
                 return <Media row={row} />
             })}
         </div>

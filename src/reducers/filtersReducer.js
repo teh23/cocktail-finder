@@ -1,6 +1,5 @@
 import CocktailFetch from '../service/filtersFetch'
 import SearchFetch from '../service/searchFetch'
-import searchFetch from '../service/searchFetch'
 import filtersFetch from '../service/filtersFetch'
 
 const initialState = {
@@ -15,7 +14,8 @@ const initialState = {
         alcoholic: '',
     },
     searchByName: {
-        data: '',
+        string: '',
+        data: [],
         loading: true,
     },
     loading: true,
@@ -73,9 +73,9 @@ const filtersReducer = (state = initialState, action) => {
 export const fetchResults = (type = '', name = '') => {
     switch (type) {
         case 'categories':
-            console.log('categories')
             return async (dispatch) => {
                 const result = await filtersFetch.getCategoriesByName(name)
+
                 dispatch({
                     type: 'FETCH_RESULTS',
                     data: result,
@@ -114,6 +114,7 @@ export const searchName = (name) => {
             type: 'FETCH_SEARCH',
             data: {
                 data: result,
+                string: name,
                 loading: false,
             },
         })
