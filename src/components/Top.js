@@ -1,12 +1,19 @@
 import 'bulma/css/bulma.css'
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { searchName } from '../reducers/filtersReducer'
 
 const Top = () => {
     const [search, setSearch] = React.useState('')
     const [active, setActive] = React.useState(false)
     const dispatch = useDispatch()
+    const filters = useSelector(({ filters }) => filters)
+
+    useEffect(() => {
+        if (filters.filters.categories !== '') {
+            console.log('cat')
+        }
+    }, [])
 
     const onChange = (e) => {
         setSearch(e.target.value)

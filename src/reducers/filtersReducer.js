@@ -1,13 +1,21 @@
 import CocktailFetch from '../service/filtersFetch'
 import SearchFetch from '../service/searchFetch'
+import filtersFetch from '../service/filtersFetch'
 
 const initialState = {
     categories: '',
     glasses: '',
     ingredients: '',
     alcoholic: '',
+    results: '',
+    filters: {
+        categories: '',
+        glasses: '',
+        alcoholic: '',
+    },
     searchByName: {
-        data: '',
+        string: '',
+        data: [],
         loading: true,
     },
     loading: true,
@@ -26,8 +34,74 @@ const filtersReducer = (state = initialState, action) => {
             }
         case 'FETCH_SEARCH':
             return { ...state, searchByName: action.data }
+        case 'TOGGLE_STATE':
+            const content = state[`${action.data.type}`].map((row) =>
+                row.name === action.data.name
+                    ? row.state === true
+                        ? { name: row.name, state: false }
+                        : { name: row.name, state: true }
+                    : { name: row.name, state: false }
+            )
+            /*const filters = {
+                [action.data.type]:
+                    state.filters[action.data.type] !== action.data.name
+                        ? action.data.name
+                        : '',
+            }*/
+            return {
+                ...state,
+                [action.data.type]: content,
+                filters: {
+                    ...state.filters,
+                    [action.data.type]:
+                        state.filters[action.data.type] !== action.data.name
+                            ? action.data.name
+                            : '',
+                },
+            }
+
+        case 'FETCH_RESULTS':
+            return { ...state, results: action.data }
+
         default:
             return state
+    }
+}
+
+export const fetchResults = (type = '', name = '') => {
+    switch (type) {
+        case 'categories':
+            return async (dispatch) => {
+                const result = await filtersFetch.getCategoriesByName(name)
+
+                dispatch({
+                    type: 'FETCH_RESULTS',
+                    data: result,
+                })
+            }
+        case 'glasses':
+            return async (dispatch) => {
+                const result = await filtersFetch.getGlassesByName(name)
+                dispatch({
+                    type: 'FETCH_RESULTS',
+                    data: result,
+                })
+            }
+        default:
+            return {
+                type: 'FETCH_RESULTS',
+                data: '',
+            }
+    }
+}
+export const toggleState = (data) => {
+    /*
+        data = {type: '', name: ''}
+     */
+
+    return {
+        type: 'TOGGLE_STATE',
+        data: data,
     }
 }
 
@@ -38,6 +112,7 @@ export const searchName = (name) => {
             type: 'FETCH_SEARCH',
             data: {
                 data: result,
+                string: name,
                 loading: false,
             },
         })
