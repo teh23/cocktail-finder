@@ -9,7 +9,7 @@ const Media = ({ row }) => {
                 <img
                     src={row.strDrinkThumb}
                     className=""
-                    alt={`${row.strDrink} drink`}
+                    alt={`${row.strImageAttribution}`}
                 />
             </figure>
             <div className={'column'}>
