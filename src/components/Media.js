@@ -4,7 +4,7 @@ import './Media.sass'
 
 const Media = ({ row }) => {
     return (
-        <div className="test">
+        <div className="result">
             <div className=" columns ">
                 <div className="column is-1">
                     <figure className="image is-64x64">

@@ -35,9 +35,7 @@ const filtersReducer = (state = initialState, action) => {
         case 'FETCH_SEARCH':
             return { ...state, searchByName: action.data }
         case 'TOGGLE_STATE':
-            const content = state[`${action.data.type}`].map((
-                row //
-            ) =>
+            const content = state[`${action.data.type}`].map((row) =>
                 row.name === action.data.name
                     ? row.state === true
                         ? { name: row.name, state: false }
